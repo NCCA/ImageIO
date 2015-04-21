@@ -2,7 +2,7 @@
 
 A simple set of demo programs to demonstrate using [ImageMagick](http://www.imagemagick.org/) for reading and writing images.
 
-##SimpleImage
+[##SimpleImage](https://github.com/NCCA/ImageIO/blob/master/SimpleImage/SimpleImageWrite.cpp)
 Basic image writing using ImageMagick
 ##PutPixel 
 Same as above but adding more functionality and [boost::scoped_array<>](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm)
