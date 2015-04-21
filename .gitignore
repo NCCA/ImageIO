@@ -49,4 +49,5 @@ Makefile
 *.tiff
 *.jpg
 *.pdf
+*.tga
 PutPixel
