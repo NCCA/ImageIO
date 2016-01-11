@@ -2,6 +2,7 @@
 #include <Magick++.h>
 #include <boost/scoped_array.hpp>
 #include <cstdio>
+#include <cmath>
 
 // for more details see this site some greate stuff here (this code was modified from it)
 // http://www.exploringbinary.com/ten-ways-to-check-if-an-integer-is-a-power-of-two-in-c/

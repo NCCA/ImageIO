@@ -8,8 +8,8 @@ CONFIG -= app_bundle
 DEPENDPATH += .
 INCLUDEPATH += .
 
-QMAKE_CXXFLAGS+=$$system(/opt/local/bin/Magick++-config --cppflags )
-LIBS+=$$system(/opt/local/bin/Magick++-config --ldflags --libs )
+QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
+LIBS+=$$system(Magick++-config --ldflags --libs )
 macx:CONFIG+=c++11
 macx:INCLUDEPATH+=/opt/ImageMagick/include/ImageMagick-6/
 macx:INCLUDEPATH+=/usr/local/include
