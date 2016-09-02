@@ -7,12 +7,14 @@ TARGET = PutPixel
 CONFIG -= app_bundle
 DEPENDPATH += .
 INCLUDEPATH += .
+INCLUDEPATH +=/usr/local/include
 macx:CONFIG+=c++11
+
 QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
 LIBS+=$$system(Magick++-config --ldflags --libs )
-macx:INCLUDEPATH+=/opt/ImageMagick/include/ImageMagick-6/
-macx:INCLUDEPATH+=/usr/local/include
-macx:LIBS+= -L/opt/ImageMagick/lib/ -lMagick++-6.Q16 -lc++
+#macx:INCLUDEPATH+=/opt/ImageMagick/include/ImageMagick-6/
+#macx:INCLUDEPATH+=/usr/local/include
+#macx:LIBS+= -L/opt/ImageMagick/lib/ -lMagick++-6.Q16 -lc++
 
 # Input
 SOURCES += PutPixel.cpp

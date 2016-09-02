@@ -99,6 +99,9 @@ int main(int argc, char **argv)
         destImage[i]=sqrt ((r1*r1+r2*r2+r3*r3+r4*r4)/4);
         destImage[i+1]=sqrt ((g1*g1+g2*g2+g3*g3+g4*g4)/4);
         destImage[i+2]=sqrt ((b1*b1+b2*b2+b3*b3+b4*b4)/4);
+//        destImage[i]= ((r1+r2+r3+r4)/4);
+//        destImage[i+1]= ((g1+g2+g3+g4)/4);
+//        destImage[i+2]= ((b1+b2+b3+b4)/4);
 
         i+=3;
        }

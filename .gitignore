@@ -50,4 +50,6 @@ Makefile
 *.jpg
 *.pdf
 *.tga
+*.psd
+*.pdf
 

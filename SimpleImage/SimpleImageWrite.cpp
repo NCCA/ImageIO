@@ -13,7 +13,7 @@ int main()
   // allocate and array of char for image
   // where data is packed in RGB format 0-255 where 0=no intensity
   // 255 = full intensity
-  char  *image = new char [WIDTH*HEIGHT*3*sizeof(char)];
+  unsigned char  *image = new unsigned char [WIDTH*HEIGHT*3*sizeof(char)];
   // index into our image array
   unsigned long int index=0;
   // now loop for width and height of image and fill in
@@ -35,7 +35,7 @@ int main()
   // set the output image depth to 16 bit
   output.depth(16);
   // write the file
-  output.write("Test.png");
+  output.write("Test.pdf");
   // delete the image data.
   delete [] image;
   return EXIT_SUCCESS;

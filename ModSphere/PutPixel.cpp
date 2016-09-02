@@ -60,8 +60,8 @@ int main()
 	{
 		for(int x=0; x<WIDTH; x++)
 		{
-            ss=fmod(s*8,1.0);
-            tt=fmod(t*8,1.0);
+			ss=fmod(s*8,1.0);
+			tt=fmod(t*8,1.0);
 			// fill the data values with sphere values
 			image[index]=fakeSphere(ss,tt);
 			image[index+1]=fakeSphere(ss,tt);
