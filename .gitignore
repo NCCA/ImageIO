@@ -45,7 +45,6 @@ Makefile
 *.zip
 *.tar.gz
 #Image files
-*.png
 *.tiff
 *.jpg
 *.pdf
