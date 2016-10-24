@@ -12,9 +12,9 @@ int main()
   constexpr unsigned int           HEIGHT    = 800;
   constexpr auto                   imageSize = WIDTH * HEIGHT * 3 * sizeof(unsigned char);
   // c++ 11
-  //std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
+  std::unique_ptr<unsigned char[]> image( new unsigned char[imageSize]);
   // c++ 14
-  std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
+  //std::unique_ptr<unsigned char[]> image=std::make_unique<unsigned char []>(imageSize);
 
   // set pixel as lambda
   auto setPixel = [&image](size_t _x, size_t _y, unsigned char _r, unsigned char _g, unsigned char _b)
