@@ -117,3 +117,42 @@ macx:LIBS+= -L/usr/local/lib -lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.
 - The remainder operator (%) returns the integer remainder of the result of dividing the first operand with the second
 - For example the value of 7 % 2 is 1
 ![alt](images/mod.png)
+
+- The magnitude of m % n must always be lest than the division n
+
+## Sphere 
+
+- The following function is used to describe a sphere
+``` 
+// code modified from Computer Graphics with OpenGL F.S. Hill
+// get the value on the sphere at co-ord s,t
+float fakeSphere(float _s, float _t)
+{
+	float r=sqrt((_s-0.5)*(_s-0.5)+(_t-0.5)*(_t-0.5));
+	if(r<0.5)
+	{
+		return 1-r/0.5;
+	}
+	else
+	{
+		return 1.0;
+	}
+}
+```
+
+- This function will work for any value of s and t in the range of 0 - 1.
+- The values will then range from 1.0 outside the sphere to black edges and then to white in the centre as shown on the image above
+- Using the template code add this function and draw a sphere.
+
+## Repeating Patterns
+- As the previous function works from 0-1 if we make the Sphere values range from 0 - 8 and only use the part after the decimal point we can create a pattern as shown above
+- To do this we use the C++ function fmod
+- The fmod() functions computes the floating-point remainder of x/ y.    
+- Specifically, the functions return the value x-i*y, for some integer i such that, if y is non-zero, the result has the same sign as x and magnitude less than the magnitude of y. 
+- So to make the value of T repeat 8 times we would use
+
+```
+float ss=fmod(S*8,1);
+float tt=fmod(T*8,1);
+```
+
