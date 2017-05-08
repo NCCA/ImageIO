@@ -1,25 +1,26 @@
 #include <iostream>
 #include <Magick++.h>
 #include <iostream>
-#include <math.h>
+#include <cmath>
+#include <memory>
 #include <cstdlib>
 
 // define widht and height of image
-const static int WIDTH=720;
-const static int  HEIGHT=576;
+constexpr int WIDTH=720;
+constexpr int  HEIGHT=576;
 
 int main()
 {
   // allocate and array of char for image
   // where data is packed in RGB format 0-255 where 0=no intensity
   // 255 = full intensity
-  unsigned char  *image = new unsigned char [WIDTH*HEIGHT*3*sizeof(char)];
+  std::unique_ptr<unsigned char  []>image( new unsigned char [WIDTH*HEIGHT*3*sizeof(char)]);
   // index into our image array
-  unsigned long int index=0;
+  size_t index=0;
   // now loop for width and height of image and fill in
-  for(int y=0; y<HEIGHT; ++y)
+  for(size_t y=0; y<HEIGHT; ++y)
   {
-    for(int x=0; x<WIDTH; ++x)
+    for(size_t x=0; x<WIDTH; ++x)
     {
       // set red channel to full
       image[index]=255;
@@ -31,12 +32,12 @@ int main()
     } // end of width loop
   } // end of height loop
   // now create an image data block
-  Magick::Image output(WIDTH,HEIGHT,"RGB",Magick::CharPixel,image);
+  Magick::Image output(WIDTH,HEIGHT,"RGB",Magick::CharPixel,image.get());
   // set the output image depth to 16 bit
   output.depth(16);
   // write the file
-  output.write("Test.pdf");
-  // delete the image data.
-  delete [] image;
+  output.write("Test.tiff");
+  
   return EXIT_SUCCESS;
 }
+
