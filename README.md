@@ -1,4 +1,6 @@
-#Image IO Demos
+# Image IO Demos
+
+__Note__ this version is no longer the master as I have decided to use OpenImageIO as the main image library.
 
 A simple set of demo programs to demonstrate using [ImageMagick](http://www.imagemagick.org/) for reading and writing images.
 
