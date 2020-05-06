@@ -1,6 +1,6 @@
 #include <iostream>
-#include <Magick++.h>
-#include <iostream>
+#include <OpenImageIO/imageio.h>
+
 #include <cmath>
 #include <memory>
 #include <cstdlib>
@@ -31,13 +31,20 @@ int main()
       index+=3;
     } // end of width loop
   } // end of height loop
-  // now create an image data block
-  Magick::Image output(WIDTH,HEIGHT,"RGB",Magick::CharPixel,image.get());
-  // set the output image depth to 16 bit
-  output.depth(16);
-  // write the file
-  output.write("Test.tiff");
-  
-  return EXIT_SUCCESS;
+
+    using namespace OIIO;
+
+
+    std::unique_ptr<ImageOutput> out = ImageOutput::create ("test.tiff");
+    if(!out)
+    {
+      std::cout<<"error with image\n";
+      return EXIT_FAILURE;
+    }
+    ImageSpec spec (WIDTH,HEIGHT,3, TypeDesc::UCHAR);
+    out->open("test.tiff",spec);
+    out->write_image(TypeDesc::UCHAR,image.get());
+    out->close();
+    return EXIT_SUCCESS;
 }
 

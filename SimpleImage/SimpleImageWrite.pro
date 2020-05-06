@@ -8,8 +8,14 @@ CONFIG -= app_bundle
 DEPENDPATH += .
 INCLUDEPATH += .
 
-QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
-LIBS+=$$system(Magick++-config --ldflags --libs )
+#QMAKE_CXXFLAGS+=$$system(Magick++-config --cppflags )
+#LIBS+=$$system(Magick++-config --ldflags --libs )
+win32:{
+    PRE_TARGETDEPS+=$$(HOMEDRIVE)\\$$(HOMEPATH)\vcpkg\installed\x64-windows\lib\OpenImageIO.lib
 
+    INCLUDEPATH += $(HOMEDRIVE)\$(HOMEPATH)\vcpkg\installed\x64-windows\include
+    LIBS += -L$(HOMEDRIVE)\$(HOMEPATH)\vcpkg\installed\x64-windows\lib\ -lOpenImageIO
+
+}
 # Input
 SOURCES += SimpleImageWrite.cpp
