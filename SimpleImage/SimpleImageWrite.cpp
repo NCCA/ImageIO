@@ -5,7 +5,7 @@
 #include <memory>
 #include <cstdlib>
 
-// define widht and height of image
+// define width and height of image
 constexpr int WIDTH=720;
 constexpr int  HEIGHT=576;
 

@@ -1,9 +1,9 @@
+#include <OpenImageIO/imageio.h>
 #include <iostream>
-#include <Magick++.h>
-#include <iostream>
-#include <stdlib.h>
-#include <math.h>
-#include <boost/scoped_array.hpp>
+#include <cstdlib>
+#include <cmath>
+#include <memory>
+
 
 const unsigned int WIDTH=800;
 const unsigned int HEIGHT=800;
@@ -44,10 +44,10 @@ float fakeSphere(float _s, float _t)
 
 int main()
 {
-    boost::scoped_array<float > image(new float [WIDTH*HEIGHT*3*sizeof(float)]);
+	auto image= std::make_unique<float []>(WIDTH*HEIGHT*3*sizeof(float));
 
 	// index into our data structure
-	unsigned long int index=0;
+	size_t index=0;
 	// Our step in texture space from 0-1 within the width of the image
 	float sStep=1.0/WIDTH;
 	float tStep=1.0/HEIGHT;
@@ -74,8 +74,17 @@ int main()
 		// reset S to the left hand value
 		s=0.0;
 	}
-	Magick::Image output(WIDTH,HEIGHT,"RGB",Magick::FloatPixel,image.get());
-	output.depth(16);
-	output.write("Test.png");
+	using namespace OIIO;
+	std::unique_ptr<ImageOutput> out = ImageOutput::create ("test.tiff");
+	if(!out)
+	{
+		std::cout<<"error with image\n";
+		return EXIT_FAILURE;
+	}
+	ImageSpec spec (WIDTH,HEIGHT,3, TypeDesc::FLOAT);
+	out->open("test.tiff",spec);
+	out->write_image(TypeDesc::FLOAT,image.get());
+	out->close();
+
 	return EXIT_SUCCESS;
 }

@@ -1,5 +1,5 @@
+#include <OpenImageIO/imageio.h>
 #include <iostream>
-#include <Magick++.h>
 #include <iostream>
 #include <stdlib.h>
 #include <cmath>
@@ -51,8 +51,19 @@ int main()
 		}
 	}
 
-	Magick::Image output(WIDTH,HEIGHT,"RGB",Magick::CharPixel,image.get());
-	output.depth(16);
-	output.write("Test.png");
+  using namespace OIIO;
+
+
+  std::unique_ptr<ImageOutput> out = ImageOutput::create ("test.tiff");
+  if(!out)
+  {
+    std::cout<<"error with image\n";
+    return EXIT_FAILURE;
+  }
+  ImageSpec spec (WIDTH,HEIGHT,3, TypeDesc::UCHAR);
+  out->open("test.tiff",spec);
+  out->write_image(TypeDesc::UCHAR,image.get());
+  out->close();
+
 	return EXIT_SUCCESS;
 }
